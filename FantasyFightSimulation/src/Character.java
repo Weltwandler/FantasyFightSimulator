@@ -21,4 +21,19 @@ public class Character {
 		armor = num;
 	}
 	
+	public int getAttack() {
+		return attack;
+	}
+	
+	public void setAttack(int num) {
+		attack = num;
+	}
+	
+	public int getDamage() {
+		return damage;
+	}
+	
+	public void setDamage(int num) {
+		damage = num;
+	}
 }
