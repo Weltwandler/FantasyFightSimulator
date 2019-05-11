@@ -166,19 +166,25 @@ public class GameLogic {
 			}
 		}
 			System.out.println("Selected spell: " + currentSpell.name);
-			if (currentSpell.heal == true) {
-				playerChar.setHitPoints(playerChar.getHitPoints() + currentSpell.effect);
-				if (playerChar.getHitPoints() > playerChar.getInitialHP()) {
-					System.out.println(currentSpell.name + " heals you for " + (currentSpell.effect - (playerChar.getHitPoints() - playerChar.getInitialHP())) + " hit points");
-					playerChar.setHitPoints(playerChar.getInitialHP());
-				} else {
-					System.out.println(currentSpell.name + " heals you for " + currentSpell.effect + " hit points");
-				}
+			if (playerChar.getManaPoints() < currentSpell.cost) {
+				System.out.println("Not enough Mana points to cast this spell. Please choose a different action!");
+				gameTurn();
 			} else {
-				System.out.println(currentSpell.name + " hits " + enemy.getMonsterType() + " for " + currentSpell.effect + " damage.");
-				currentHP -= currentSpell.effect;
+				if (currentSpell.heal == true) {
+					playerChar.setHitPoints(playerChar.getHitPoints() + currentSpell.effect);
+					if (playerChar.getHitPoints() > playerChar.getInitialHP()) {
+						System.out.println(currentSpell.name + " heals you for " + (currentSpell.effect - (playerChar.getHitPoints() - playerChar.getInitialHP())) + " hit points");
+						playerChar.setHitPoints(playerChar.getInitialHP());
+					} else {
+						System.out.println(currentSpell.name + " heals you for " + currentSpell.effect + " hit points");
+					}
+				} else {
+					System.out.println(currentSpell.name + " hits " + enemy.getMonsterType() + " for " + currentSpell.effect + " damage.");
+					currentHP -= currentSpell.effect;
+				}
+				playerChar.setManaPoints(playerChar.getManaPoints() - currentSpell.cost);
 			}
-			playerChar.setManaPoints(playerChar.getManaPoints() - currentSpell.cost);
+			
 				
 	}
 	
