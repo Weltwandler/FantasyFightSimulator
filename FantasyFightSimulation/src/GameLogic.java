@@ -60,7 +60,7 @@ public class GameLogic {
 				break;
 			} else if (choice == 4) {
 				enemy = new Enemy("Bandit", 25, 13, 3, 5);
-				System.out.println("You will fight a" + enemy.getMonsterType());
+				System.out.println("You will fight a " + enemy.getMonsterType());
 				break;
 			} else {
 				System.out.println("Invalid Selection. Please choose again.");
