@@ -93,6 +93,7 @@ public class GameLogic {
 			System.out.println("Your current Mana points are " + playerChar.getManaPoints());
 		}
 		System.out.println("The " + enemy.getMonsterType() + "'s hit points are " + enemy.getHitPoints() + "\n");
+		System.out.println("******************************************************");
 	}
 	
 	public void victoryCheck() {
