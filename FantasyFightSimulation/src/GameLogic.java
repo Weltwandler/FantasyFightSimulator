@@ -92,7 +92,7 @@ public class GameLogic {
 		if (playerChar.getMagic()) {
 			System.out.println("Your current Mana points are " + playerChar.getManaPoints());
 		}
-		System.out.println("The " + enemy.getMonsterType() + "'s hit points are " + enemy.getHitPoints());
+		System.out.println("The " + enemy.getMonsterType() + "'s hit points are " + enemy.getHitPoints() + "\n");
 	}
 	
 	public void victoryCheck() {
@@ -118,10 +118,10 @@ public class GameLogic {
 		int attackRoll = diceRollTwenty() + currentAttack + 4;
 		if (attackRoll >= currentArmor) {
 			int attackDamage = currentDamage + diceRollFive() -1;
-			System.out.println("The attack hits for " + attackDamage + " damage.");
+			System.out.println("The attack hits for " + attackDamage + " damage.\n");
 			currentHP -= attackDamage; 
 		} else {
-			System.out.println("The attack fails.");
+			System.out.println("The attack fails.\n");
 		}
 		
 	}
@@ -164,16 +164,22 @@ public class GameLogic {
 				currentSpell = new Magic("Healing Hands", 5, true, 10);
 				break;
 			}
+		}
+			System.out.println("Selected spell: " + currentSpell.name);
 			if (currentSpell.heal == true) {
-				System.out.println(currentSpell.name + " heals you for " + currentSpell.effect + " hit points");
 				playerChar.setHitPoints(playerChar.getHitPoints() + currentSpell.effect);
+				if (playerChar.getHitPoints() > playerChar.getInitialHP()) {
+					System.out.println(currentSpell.name + " heals you for " + (currentSpell.effect - (playerChar.getHitPoints() - playerChar.getInitialHP())) + " hit points");
+					playerChar.setHitPoints(playerChar.getInitialHP());
+				} else {
+					System.out.println(currentSpell.name + " heals you for " + currentSpell.effect + " hit points");
+				}
 			} else {
 				System.out.println(currentSpell.name + " hits " + enemy.getMonsterType() + " for " + currentSpell.effect + " damage.");
 				currentHP -= currentSpell.effect;
 			}
-			
-		}
-		
+			playerChar.setManaPoints(playerChar.getManaPoints() - currentSpell.cost);
+				
 	}
 	
 	public void gameTurn() {
@@ -209,6 +215,8 @@ public class GameLogic {
 			currentAttack = enemy.getAttack();
 			currentArmor = playerChar.getArmor();
 			currentDamage = enemy.getDamage();
+			
+			System.out.println(enemy.getMonsterType() + " attacks!\n");
 			
 			attackNormal();
 			

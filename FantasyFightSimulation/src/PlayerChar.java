@@ -4,6 +4,7 @@ public class PlayerChar extends Character {
 	protected String characterClass;
 	protected boolean magic;
 	protected int manaPoints;
+	protected int initialHP;
 	
 	public PlayerChar(String name, String characterClass, boolean mag, int hp, int armor, int attack, int damage) {
 		this.name = name;
@@ -15,6 +16,7 @@ public class PlayerChar extends Character {
 			manaPoints = 0;
 		}
 		setHitPoints(hp);
+		initialHP = getHitPoints();
 		setArmor(armor);
 		setAttack(attack);
 		setDamage(damage);
@@ -50,5 +52,9 @@ public class PlayerChar extends Character {
 	
 	public void setManaPoints(int num) {
 		manaPoints = num;
+	}
+	
+	public int getInitialHP() {
+		return initialHP;
 	}
 }
