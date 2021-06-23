@@ -189,6 +189,11 @@ public class GameLogic {
 				
 	}
 	
+	public void endGame() {
+		System.out.println("Enter 0 to end game");
+		int i = scanner.nextInt();
+	}
+	
 	public void gameTurn() {
 		if (playersTurn) {
 			currentHP = enemy.getHitPoints();
@@ -214,6 +219,8 @@ public class GameLogic {
 			victoryCheck();
 			if (!gameOver) {
 				displayStats();
+			} else {
+				endGame();
 			}
 			
 			playersTurn = false;
@@ -232,6 +239,8 @@ public class GameLogic {
 			victoryCheck();
 			if (!gameOver) {
 				displayStats();
+			} else {
+				endGame();
 			}
 			
 			playersTurn = true;
